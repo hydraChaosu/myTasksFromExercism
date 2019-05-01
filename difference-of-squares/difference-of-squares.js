@@ -3,16 +3,7 @@ export class Squares {
     this.number = number;
     this.squareOfSum = this.squareSum();
     this.sumOfSquares = this.sumSquares();
-    this.diffrence = this.diffrence(
-      this.squareSum(number),
-      this.sumSquares(number)
-    );
-  }
-
-  diffrence(first, second) {
-    let one = first;
-    let two = second;
-    return one - two;
+    this.difference = this.squareOfSum - this.sumOfSquares;
   }
 
   squareSum() {
