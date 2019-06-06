@@ -11,11 +11,23 @@ describe("tests RNA translation to proteins", () => {
   });
   it("stops translation after catching wrong RNA", () => {
     const RNA = "AUGUAAUCU";
-    expect(rnaTranslation(RNA)).toEqual("Codon UAA Stopped translation");
+    let thrownError;
+    try {
+      rnaTranslation(RNA);
+    } catch (error) {
+      thrownError = error;
+    }
+    expect(thrownError).toEqual(Error("Codon UAA Stopped translation"));
   });
   it("throw an error when RNA have wrong length", () => {
     const RNA = "AUGUAACU";
-    expect(rnaTranslation(RNA)).toEqual("RNA have incorrect length");
+    let thrownError;
+    try {
+      rnaTranslation(RNA);
+    } catch (error) {
+      thrownError = error;
+    }
+    expect(thrownError).toEqual(Error("RNA have incorrect length"));
   });
   it("throw an error when codon is not existing", () => {
     const RNA = "AUGZZZBBB";
