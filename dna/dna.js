@@ -1,4 +1,6 @@
-const DNA = [
+import { ModuleMap } from "jest-haste-map";
+
+const CODONS = [
   { AUG: "Methionine" },
   { UUU: "Phenylalanine" },
   { UUC: "Phenylalanine" },
@@ -19,5 +21,13 @@ const DNA = [
 ];
 
 const rnaTranslate = RNA => {
-  if (RNA.length % 3 !== 0) return "Incorrect length of RNA";
+  if (RNA.length % 3 !== 0) return "RNA have incorrect length";
+  const codonsFromRNA = [];
+  for (let i = 0; i < RNA.length; i = i + 3) {
+    codonsFromRNA.push(RNA.slice(i, i + 3));
+  }
+  const proteins = codonsFromRNA.map();
+  return proteins;
 };
+
+module.exports = rnaTranslate;
