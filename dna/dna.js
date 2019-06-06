@@ -26,13 +26,18 @@ const rnaTranslate = RNA => {
   for (let i = 0; i < RNA.length; i = i + 3) {
     codonsFromRNA.push(RNA.slice(i, i + 3));
   }
+  const tempErr = [];
   const proteins = codonsFromRNA.map(codon => {
     if (CODONS.hasOwnProperty(codon)) {
       if (CODONS[codon] === false)
         throw new Error(`Codon ${codon} Stopped translation`);
       return CODONS[codon];
+    } else {
+      tempErr.push(codon);
     }
   });
+  if (tempErr.length > 0)
+    throw new Error(`The Codon ${tempErr} don't exist chceck the RNA`);
   return proteins;
 };
 

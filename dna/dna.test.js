@@ -31,8 +31,14 @@ describe("tests RNA translation to proteins", () => {
   });
   it("throw an error when codon is not existing", () => {
     const RNA = "AUGZZZBBB";
-    expect(rnaTranslation(RNA)).toEqual(
-      "Codon ['ZZZ','BBB'] don't exist chceck RNA  "
+    let thrownError;
+    try {
+      rnaTranslation(RNA);
+    } catch (error) {
+      thrownError = error;
+    }
+    expect(thrownError).toEqual(
+      Error("The Codon ZZZ,BBB don't exist chceck the RNA")
     );
   });
 });
