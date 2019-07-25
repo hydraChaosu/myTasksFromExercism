@@ -1,4 +1,11 @@
-/*export default*/ function solve(x, y) {
+//
+// This is only a SKELETON file for the 'Darts' exercise. It's been provided as a
+// convenience to get you started writing code faster.
+//
+
+export const solve = (x, y) => {
+  /*export default*/
+
   // console.log(x, y);
   x = x < 0 ? x * -1 : x;
   y = y < 0 ? y * -1 : y;
@@ -26,11 +33,4 @@
   //outer = 1
   // middle =5
   //inner =15
-}
-
-console.log(solve(9, -9)); //0
-console.log(solve(0, 10)); //1
-console.log(solve(4, 4)); //1
-console.log(solve(0, 5)); //5
-console.log(solve(0.8, -0.8)); //5
-console.log(solve(0, -1)); //10
+};
