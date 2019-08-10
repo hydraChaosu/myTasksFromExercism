@@ -1,0 +1,87 @@
+export const meetupDay = (year, month, weekday, day) => {
+  const days = {
+    "1st": 1,
+    "2nd": 2,
+    "3rd": 3,
+    "4th": 4,
+    "5th": 5,
+    teenth: 10
+  };
+  const weekdays = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+  ];
+  if (day === "teenth") {
+    let data = new Date(year, month, days[day]);
+    let nameDay = weekdays[data.getDay()];
+    let indexDay = weekdays.indexOf(nameDay);
+    let indexLookDay = weekdays.indexOf(weekday);
+    let distance = 0;
+    while (indexDay !== indexLookDay) {
+      if (indexDay >= 6) {
+        indexDay = 0;
+      } else {
+        indexDay++;
+      }
+      distance++;
+    }
+    //   console.log(weekdays[data.getDay()]);
+    //   console.log(data.getDay());
+    data.setDate(days[day] + distance);
+    //   console.log(indexDay, indexLookDay, distance);
+    return data;
+  } else if (day === "last") {
+    let data = new Date(year, month + 1, 0);
+    let daj = data.getDate();
+    let nameDay = weekdays[data.getDay()];
+    let indexDay = weekdays.indexOf(nameDay);
+    let indexLookDay = weekdays.indexOf(weekday);
+    let distance = 0;
+
+    while (indexDay !== indexLookDay) {
+      if (indexDay < 0) {
+        indexDay = 6;
+      } else {
+        indexDay--;
+      }
+      distance++;
+    }
+    console.log(daj);
+    data.setDate(daj - distance);
+
+    return data;
+  } else {
+    let data = new Date(year, month, 1);
+    let nameDay = weekdays[data.getDay()];
+    let indexDay = weekdays.indexOf(nameDay);
+    let indexLookDay = weekdays.indexOf(weekday);
+    let distance = 0;
+
+    while (indexDay !== indexLookDay) {
+      if (indexDay >= 6) {
+        indexDay = 0;
+      } else {
+        indexDay++;
+      }
+      distance++;
+    }
+    // console.log(distance);
+    if (days[day] === 1) {
+      data.setDate(1 + distance * days[day]);
+    } else {
+      data.setDate(1 + distance + 7 * days[day] - 7);
+      if (data.getMonth() !== month) {
+        throw new Error("");
+      }
+    }
+    // console.log(data);
+    return data;
+  }
+};
+
+// meetupDay(2013, 4, "Tuesday", "1st");
